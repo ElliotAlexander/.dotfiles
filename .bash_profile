@@ -124,7 +124,6 @@ export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 export PATH="/usr/local/opt/tomcat@7/bin:$PATH"
 export PATH="/Library/Maven/bin/:$PATH"
 
-
 export MAVEN_OPTS="$MAVEN_OPTS -Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/usr/local/mysql/bin:$PATH"
@@ -132,3 +131,4 @@ export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/Users/user/.local/bin/:$PATH"
+export PATH="/User/user/.cabal/packages/:$PATH"
