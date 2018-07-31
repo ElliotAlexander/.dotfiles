@@ -130,5 +130,15 @@ export PATH="/usr/local/mysql/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 export PATH="/usr/local/opt/gettext/bin:$PATH"
-export PATH="/Users/user/.local/bin/:$PATH"
-export PATH="/User/user/.cabal/packages/:$PATH"
+export PATH="~/.local/bin/:$PATH"
+export PATH="~/Library/Haskell/bin:$PATH"
+
+
+# Not used - Aliases allow us to use both versions at the same time.ß
+#export PATH="/usr/local/Cellar/php@7.1/7.1.20/bin/:$PATH"
+#export PATH="/usr/local/opt/php@5.6/bin:$PATH"
+
+# Note that using just 'php' inside bash will use macos' default PHP install.
+# You can find this in /usr/bin/php
+alias php5.6='/usr/local/opt/php@5.6/bin/php';
+alias php7='/usr/local/Cellar/php@7.1/7.1.20/bin/php'
