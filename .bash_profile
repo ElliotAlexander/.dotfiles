@@ -116,6 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
+
 alias phplog='tail -2 /var/log/apache2/error.log'
 alias c='clear'
 
@@ -146,6 +148,8 @@ export PATH="~/.local/bin/:$PATH"
 
 
 
+
+
 # Not used - Aliases allow us to use both versions at the same time.ß
 #export PATH="/usr/local/Cellar/php@7.1/7.1.20/bin/:$PATH"
 #export PATH="/usr/local/opt/php@5.6/bin:$PATH"
@@ -158,3 +162,9 @@ alias php7='/usr/local/Cellar/php@7.1/7.1.20/bin/php'
 
 # Install composer globally.
 alias composer="php /usr/local/bin/composer.phar"
+
+export PATH="/usr/local/bin/phpcs:$PATH"
+
+# Add Brew to path.
+export PATH="/usr/local/bin:$PATH"
+export PATH="~/.jenv/bin:$PATH"
