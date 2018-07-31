@@ -118,20 +118,32 @@ fi
 
 alias phplog='tail -2 /var/log/apache2/error.log'
 alias c='clear'
+
+#JEnv
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
-export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+
+#Tomcat 
 export PATH="/usr/local/opt/tomcat@7/bin:$PATH"
-export PATH="/Library/Maven/bin/:$PATH"
 
+# MAVEN.
 export MAVEN_OPTS="$MAVEN_OPTS -Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m"
-export PATH="/usr/local/opt/gettext/bin:$PATH"
-export PATH="/usr/local/mysql/bin:$PATH"
+export PATH="/Library/Maven/bin/:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
-export PATH="/usr/local/opt/gettext/bin:$PATH"
-export PATH="~/.local/bin/:$PATH"
+#MYSQL
+# Alias multiple versions --  
+#export PATH="/usr/local/mysql/bin:$PATH"
+alias mysql5.6='/usr/local/mysq/bin'
+
+
+#Haskell 
 export PATH="~/Library/Haskell/bin:$PATH"
+
+# HIE / Haskell Language Server
+export PATH="~/.local/bin/:$PATH"
+
+
 
 
 # Not used - Aliases allow us to use both versions at the same time.ß
@@ -140,5 +152,9 @@ export PATH="~/Library/Haskell/bin:$PATH"
 
 # Note that using just 'php' inside bash will use macos' default PHP install.
 # You can find this in /usr/bin/php
+# The default PHP version on macos is 5.6 
 alias php5.6='/usr/local/opt/php@5.6/bin/php';
 alias php7='/usr/local/Cellar/php@7.1/7.1.20/bin/php'
+
+# Install composer globally.
+alias composer="php /usr/local/bin/composer.phar"
