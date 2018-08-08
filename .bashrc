@@ -118,3 +118,5 @@ fi
 
 alias phplog='tail -2 /var/log/apache2/error.log'
 alias c='clear'
+alias nsConnect='sudo mount -t cifs -o username="elliot" //192.168.1.86/Elliot\ Share/ ~/Network\ Share/'
+alias nsDConnect='sudo umount ~/Network\ Share/'
