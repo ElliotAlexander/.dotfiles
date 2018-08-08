@@ -1,7 +1,5 @@
 
-
-
-SET GPG_PUBLIC=094C0C8C5CBF06AE13758AA5628A8CBDEB12F285
+SET GPG_PUBLIC=8C903A1B41502A3C4ED17E6690B8E68B93A82B8A
 
 
 git config credential.helper store
@@ -12,7 +10,6 @@ git config --global credential.helper 'cache --timeout=3600'
 
 gpg --list-keys %GPG_PUBLIC%
 IF %errorlevel%==0 (
-    echo Signing commits using %GPG_PUBLIC%
 	git config --global user.signingkey %GPG_PUBLIC%
 	git config --global commit.gpgsign true
 ) ELSE (
