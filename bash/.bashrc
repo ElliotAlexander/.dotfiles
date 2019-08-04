@@ -1,6 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 case $- in
@@ -118,5 +115,4 @@ fi
 
 alias phplog='tail -2 /var/log/apache2/error.log'
 alias c='clear'
-alias nsConnect='sudo mount -t cifs -o username="elliot" //192.168.1.86/Elliot\ Share/ ~/Network\ Share/'
-alias nsDConnect='sudo umount ~/Network\ Share/'
+alias pullr=git pull --recurse-submodules
