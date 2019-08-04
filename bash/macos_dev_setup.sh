@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -euo pipefail
-
 echo "Installing pre-build tools."
 xcode-select --install 2>&1 >/dev/null
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer 2>&1 >/dev/null
@@ -43,6 +41,18 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Defensive shell-configurations?
 chsh -s $(which zsh)
 
+
+# Install docker
+brew install docker docker-compose docker-machine xhyve docker-machine-driver-xhyve
+brew cask install kitematic
+sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+
+
+# Assorted Others
+
+brew install vim wget htop
+brew cask install firefox visual-studio-code spotify karabiner-elements alfred firefox iterm2 slack
 
 # Fix dumb system prefs.
 
