@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 while getopts ":sv" opt; do
   case ${opt} in
     v )
