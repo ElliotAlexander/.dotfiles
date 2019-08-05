@@ -54,6 +54,7 @@ alias c="clear"
 alias g='git'
 alias gp="git push"
 alias gl="git pull --recurse-submodules"
+alias gb="git --no-pager branch"
 
 alias tmux="tmux -u"
 alias tmuxm="tmux new-session \; split-window -h \; split-window -v \; attach"
