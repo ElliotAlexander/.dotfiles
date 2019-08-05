@@ -12,29 +12,29 @@ ZSH_THEME="agnoster"
 
 plugins=(
 	alias-tips
-        dirhistory
-        extract
-        fancy-ctrl-z
-        fzf
-        fast-syntax-highlighting
-        git
-        github
-        globalias
-        magic-enter
-        tmux
-        web-search
-        z
-        zsh-autosuggestions
-        zsh-navigation-toolsgit 
-				colored-man 
-				colorize 
-				pip 
-				python 
-				brew 
-				osx 
-				zsh-syntax-highlighting 
-				ssh-agent
-			)
+	brew 
+	colored-man 
+	colorize 
+	dirhistory
+	extract
+	fancy-ctrl-z
+	fast-syntax-highlighting
+	fzf
+	git
+	github
+	globalias
+	magic-enter
+	osx 
+	pip 
+	python 
+	ssh-agent
+	tmux
+	web-search
+	z
+	zsh-autosuggestions
+	zsh-navigation-toolsgit 
+	zsh-syntax-highlighting 
+)
 
 
 source $ZSH/oh-my-zsh.sh
