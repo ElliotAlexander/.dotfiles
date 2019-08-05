@@ -167,14 +167,13 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 # Activity monitor
 
 # Show main window when opening activity monitor
-defaults write com.apple.ActivityMonitor OpenMainWindow -bool true;ok
+defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 
 # Visualzie CPU
-defaults write com.apple.ActivityMonitor IconType -int 5;ok
-
+defaults write com.apple.ActivityMonitor IconType -int 5
 # Don't hide some processes in activity monitor
-defaults write com.apple.ActivityMonitor ShowCategory -int 0;ok
+defaults write com.apple.ActivityMonitor ShowCategory -int 0
 
 # Default sort results by CPU Usage
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
-defaults write com.apple.ActivityMonitor SortDirection -int 0;ok
+defaults write com.apple.ActivityMonitor SortDirection -int 0
