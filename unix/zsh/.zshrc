@@ -8,18 +8,15 @@ ENABLE_CORRECTION="true"
 MAGIC_ENTER_GIT_COMMAND="git status -v && exag && echo -e '\n'"
 MAGIC_ENTER_OTHER_COMMAND="lsda && echo -e '\n'"
 
-ZSH_THEME="agnoster"
+ZSH_THEME="cloud"
+
+export FZF_BASE=/path/to/fzf/install/dir
 
 plugins=(
-	alias-tips
 	brew 
-	colored-man 
-	colorize 
 	dirhistory
 	extract
 	fancy-ctrl-z
-	fast-syntax-highlighting
-	fzf
 	git
 	github
 	globalias
@@ -31,13 +28,8 @@ plugins=(
 	tmux
 	web-search
 	z
-	zsh-autosuggestions
-	zsh-navigation-toolsgit 
-	zsh-syntax-highlighting 
 )
 
-
-source $ZSH/oh-my-zsh.sh
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 EDITOR=vim 
