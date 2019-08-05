@@ -43,6 +43,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 EDITOR=vim 
 
 
+alias bat="/usr/local/bat/bat"
 
 # Aliases
 alias la="ls -AXb --group-directories-first --sort=extension"
@@ -56,8 +57,11 @@ alias q="exit"
 alias fdir='find . -type d -name'
 alias ffil='find . -type f -name'
 alias cat="bat"
+alias c="clear"
 
 alias g='git'
+alias gp="git push"
+alias gl="git pull --recurse-submodules"
 
 alias tmux="tmux -u"
 alias tmuxm="tmux new-session \; split-window -h \; split-window -v \; attach"
@@ -69,3 +73,5 @@ alias systa="sudo systemctl start"
 alias systo="sudo systemctl stop"
 alias sysr="sudo systemctl restart"
 alias syss="systemctl status"
+
+source $ZSH/oh-my-zsh.sh
