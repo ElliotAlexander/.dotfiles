@@ -67,4 +67,7 @@ alias systo="sudo systemctl stop"
 alias sysr="sudo systemctl restart"
 alias syss="systemctl status"
 
+alias dc="docker-compose"
+alias dcu="docker-compose up"
+
 source $ZSH/oh-my-zsh.sh
