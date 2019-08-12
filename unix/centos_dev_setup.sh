@@ -18,6 +18,9 @@ source ~/.zshrc
 echo "ZSH installed."
 
 
+# For python
+sudo yum install centos-release-scl
+
 # Setup Bat
 
 wget -O bat.zip https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-v0.7.1-x86_64-unknown-linux-musl.tar.gz
@@ -41,6 +44,8 @@ sudo yum install -y python-pip
 sudo pip install -y docker-compose
 sudo yum upgrade python*
 
+# G++ 
+sudo yum group install "Development Tools" 
 
 # Setup node / npm
 sudo yum install -y npm
@@ -49,4 +54,21 @@ sudo npm install -yg yarn
 # Update to latest
 sudo npm cache clean -f
 sudo npm install -yg n
+
+sudo npm --loglevel silent root -g
+sudo npm install -g neovim 
+
+sudo npm install -g typescript
 sudo n stable
+
+
+# Python 
+sudo yum install centos-release-scl
+sudo yum install rh-python36
+scl enable rh-python36 zsh
+pip install lxml --user
+
+
+# diff-so-fancy
+
+sudo wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy > /usr/local/bin
