@@ -41,6 +41,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Defensive shell-configurations?
 chsh -s $(which zsh)
 
+# Install typescript 
+npm install -g typescript tslint
+
+# Setup FZF
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 
 # Install docker
 brew install docker docker-compose docker-machine xhyve docker-machine-driver-xhyve
@@ -53,6 +60,11 @@ sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machi
 
 brew install vim wget htop
 brew cask install firefox visual-studio-code spotify karabiner-elements alfred firefox iterm2 slack
+
+brew install neovim
+# Vim plug
+sudo curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Fix dumb system prefs.
 
