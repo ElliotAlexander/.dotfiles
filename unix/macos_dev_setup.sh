@@ -41,7 +41,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Defensive shell-configurations?
 chsh -s $(which zsh)
 
+
+# Install python 
+brew install python3
+
 # Install typescript 
+sudo chown -R $USER /usr/local/lib/node_modules/
 npm install -g typescript tslint
 
 # Setup FZF
@@ -66,6 +71,10 @@ brew install neovim
 sudo curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+npm install -g neovim
+
+#Denoite
+python3 -m pip install pynvim 
 # Fix dumb system prefs.
 
 echo "Ensuring all pref panes are closed."
