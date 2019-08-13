@@ -72,3 +72,7 @@ pip install lxml --user
 # diff-so-fancy
 
 sudo wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy > /usr/local/bin
+
+
+
+sudo yum install -y the_silver_searcher
