@@ -13,6 +13,7 @@ if [[ $? != 0 ]]; then
 	exit 2
 fi
 
+
 read -r -p "Update / Upgrade Brew? y/n:" response
 if [[ $response =~ (y|yes|Y) ]]; then
 	echo "Updating homebrew..."
@@ -41,6 +42,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Defensive shell-configurations?
 chsh -s $(which zsh)
 
+
+
+echo "Installing bat"
+brew install bat
 
 # Install python 
 brew install python3
