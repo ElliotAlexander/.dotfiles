@@ -9,6 +9,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " let Vundle manage Vundle, required
+Plug 'morhetz/gruvbox'
 Plug 'gmarik/Vundle.vim'
 Plug 'scrooloose/nerdtree',{ 'on':  'NERDTreeToggle' }
 Plug 'morhetz/gruvbox'
@@ -17,12 +18,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Shougo/deoplete.nvim'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'w0rp/ale'
 Plug 'Shougo/denite.nvim'
 Plug 'ianks/vim-tsx'
 Plug 'edkolev/tmuxline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'neovim/node-host'
 Plug '~/.fzf'
@@ -34,7 +35,7 @@ Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'tpope/vim-eunuch'
 Plug 'airblade/vim-gitgutter' 
 Plug 'dkprice/vim-easygrep'
-
+Plug 'tpope/vim-fugitive'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -42,7 +43,6 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
 
 let g:deoplete#enable_at_startup = 1
 let g:node_host_prog = '/usr/lib/node_modules/neovim-node-host'
@@ -55,6 +55,7 @@ let g:lightline = {
   \ }
 
 
+
 call plug#end()
 
 
@@ -64,14 +65,24 @@ set termguicolors
 set t_Co=256
 filetype indent plugin on
 
+" Theme setup
+set background=dark
+colorscheme gruvbox
+
+
 " Mouse setup
 set number
 set mouse=a
 
+" Use eslint
+let g:ale_fixers = {
+ \ 'javascript': ['eslint', 'prettier'],
+ \ 'typescript': ['eslint', 'prettier'],
+ \ }
 
-" Theme setup
-set background=dark
-colorscheme gruvbox
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1
 
 "Enable syntax highlighting
 syntax on
