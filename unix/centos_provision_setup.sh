@@ -11,12 +11,12 @@ chmod -R go= ~/.ssh
 
 sudo cp ./sshd_config /etc/ssh/sshd_config
 
-sudo yum update && yum install -y policycoreutils-python
+sudo yum update && sudo yum install -y policycoreutils-python
 
 sudo semanage port -a -t ssh_port_t -p tcp 6022
 sudo firewall-cmd --add-port=6022/tcp --permanent
 
-sudo fireall-cmd --remove-service=ssh
+sudo firewall-cmd --remove-service=ssh
 sudo firewall-cmd --reload
 
 
