@@ -6,7 +6,7 @@ cat ../id.pub > ~/.ssh/authorized_keys
 
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
-sudo chmod -R go= ~/.ssh
+chmod -R go= ~/.ssh
 
 
 sudo cp ./sshd_config /etc/ssh/sshd_config
