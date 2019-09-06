@@ -225,10 +225,6 @@ let g:ale_fixers = {
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 let g:ale_fix_on_save = 1
-
-alias weather-southampton="curl https://v2.wttr.in/southampton"
-alias weather-bath="curl https://v2.wttr.in/bath"
-
 " Perl critic setup
 let g:ale_perl_perl_options = '-c -Mwarnings -Ilib -It/lib'
 "le_perl_perl_options = '-c -Mwarnings -Ilib -It/lib' Display perl critic violations as errors

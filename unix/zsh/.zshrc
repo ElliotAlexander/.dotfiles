@@ -74,6 +74,9 @@ alias syss="systemctl status"
 alias dc="docker-compose"
 alias dcu="docker-compose up"
 
+alias weather="curl https://v2.wttr.in/"
+alias weather-southampton="curl https://v2.wttr.in/southampton"
+alias weather-bath="curl https://v2.wttr.in/bath"
 
 source $ZSH/oh-my-zsh.sh
 
