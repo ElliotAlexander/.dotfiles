@@ -32,7 +32,7 @@ plugins=(
 
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
-EDITOR=vim 
+export EDITOR=vim 
 
 
 alias bat="/usr/local/bat/bat"
@@ -48,7 +48,6 @@ alias ln="ln -sv"
 alias q="exit"
 alias fdir='find . -type d -name'
 alias ffil='find . -type f -name'
-alias cat="bat"
 alias c="clear"
 
 alias g='git'
@@ -90,3 +89,4 @@ PERL_MM_OPT="INSTALL_BASE=/home/elliot/perl5"; export PERL_MM_OPT;
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
