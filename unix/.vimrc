@@ -234,3 +234,15 @@ let g:ale_type_map = {
 
 " Rainbow
 let g:rainbow_active = 1
+
+
+" Strip trailing whitespace (,ss)
+function! StripWhitespace()
+	let save_cursor = getpos(".")
+	let old_query = getreg('/')
+	:%s/\s\+$//e
+	call setpos('.', save_cursor)
+	call setreg('/', old_query)
+ endfunction
+
+ noremap <leader>ss :call StripWhitespace()<CR>
