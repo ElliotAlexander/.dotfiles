@@ -73,6 +73,20 @@ pip install lxml --user
 
 sudo wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy > /usr/local/bin
 
+# Install ruby
 
+yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel \
+   libyaml-devel libffi-devel openssl-devel make \
+   bzip2 autoconf automake libtool bison iconv-devel sqlite-devel
+
+curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
+curl -L get.rvm.io | bash -s stable
+source /home/$USER/.rvm/scripts/rvm
+rvm reload
+
+
+echo "Installing Ruby 2.6" 
+rvm install 2.6
 
 sudo yum install -y the_silver_searcher

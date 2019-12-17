@@ -28,12 +28,13 @@ plugins=(
 	tmux
 	web-search
 	z
+    docker
+    docker-compose
 )
 
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 export EDITOR=vim 
-
 
 alias bat="/usr/local/bat/bat"
 
@@ -80,6 +81,7 @@ alias weather-bath="curl https://v2.wttr.in/bath"
 source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
 PATH="/home/elliot/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/elliot/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
