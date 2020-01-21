@@ -1,4 +1,5 @@
-let mapleader=" "
+nnoremap <SPACE> <Nop>
+let mapleader = "\<Space>" 
 set encoding=utf8
 
 call plug#begin('~/.vim/plugged')
@@ -62,6 +63,13 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+call plug#end()
+
+"
+" Options
+"
+"
+
 " No swap files
 set noswapfile
 set nobackup
@@ -96,8 +104,13 @@ let g:lightline = {
   \     }
   \ }
 
+let g:ackprg = 'ag --nogroup --nocolor --column'
+" Always close nerd when we open a file
+let NERDTreeAutoDeleteBuffer = 1
+" Prettier nerd
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
-call plug#end()
 
 colorscheme gruvbox
 
@@ -118,8 +131,6 @@ set hlsearch
 set ignorecase     
 set smartcase     
 
-" no arrows <3 
-let g:elite_mode=1
 
 " Theme setup
 set background=dark
@@ -130,10 +141,12 @@ syntax on
 " Always start NerdTree
 autocmd VimEnter * NERDTree
 
-
 " Aliases
 "
 " Map tab switching to CTRL + numbers
+map <silent> <D-1> :tabn 1<cr>
+map <silent> <D-2> :tabn 2<cr>
+map <silent> <D-1> :tabn 1<cr>
 map <silent> <D-1> :tabn 1<cr>
 
 " Map colon to semi-colon
@@ -144,17 +157,31 @@ map ; :Files<CR>
 map <A-;> :Ag<CR>
 
 " Map Ctrl-O to nerdtree toggle
-map <C-o> :NERDTreeToggle<CR>
+noremap <Leader>o :NERDTreeToggle<CR>
+" NERDTree Open current file 
+noremap <silent> <Leader>v :NERDTreeFind<CR>
 
-
-map <C-t><up> :tabr<cr>
-map <C-t><down> :tabl<cr>
-map <C-t><left> :tabp<cr>
-map <C-t><right> :tabn<cr>
+map <Leader><up> :tabr<CR>
+map <Leader><down> :tabl<CR>
+map <Leader><down> :tabl<cr>
+map <Leader><left> :tabp<CR>
+map <Leader><right> :tabn<CR>
 
 " Multiple cursor bindings
-nmap <silent> <C-N> :cn<CR>zv
-nmap <silent> <C-P> :cp<CR>zv
+nmap <silent> <Leader>N :cn<CR>zv
+nmap <silent> <Leader>P :cp<CR>zv
+
+" Reload all bffers on L-e
+map <leader>e :bufdo e!<CR>
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 
 " Markdown Syntax Support
@@ -165,7 +192,6 @@ augroup markdown
 
 " Grep improvements
 command! -nargs=* Search :vimgrep /<q-args>/ **/*
-let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Use two spaces for tabs.
 filetype plugin indent on
@@ -240,15 +266,6 @@ let g:coc_global_extensions = [
   \ ]
 
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -283,4 +300,4 @@ function! StripWhitespace()
 	call setreg('/', old_query)
  endfunction
 
- noremap <leader>ss :call StripWhitespace()<CR>
+noremap <leader>ss :call StripWhitespace()<CR>
