@@ -45,6 +45,7 @@ Plug 'tpope/vim-eunuch' " Unix commands in vim
 Plug 'airblade/vim-gitgutter' 
 Plug 'dkprice/vim-easygrep'
 Plug 'HendrikPetertje/vimify'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Git
 Plug 'tpope/vim-fugitive'
