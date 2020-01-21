@@ -1,3 +1,4 @@
+let mapleader=" "
 set encoding=utf8
 
 call plug#begin('~/.vim/plugged')
