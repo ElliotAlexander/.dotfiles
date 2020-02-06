@@ -159,9 +159,12 @@ map <silent> <D-1> :tabn 1<cr>
 " Map colon to semi-colon
 nmap ; :
 
-" Map semi-colon to Files
-map ; :Files<CR>
+" Map semi-colon to Files"
+nnoremap <silent> ; :All<cr>
 map <A-;> :Ag<CR>
+command! -bang -nargs=*  All
+  \ call fzf#run(fzf#wrap({'source': 'rg --files --hidden --no-ignore-vcs --glob "!{node_modules/*,.git/*}"', 'down': '40%', 'options': '--expect=ctrl-t,ctrl-x,ctrl-v --multi --reverse' }))
+
 
 " Map Ctrl-O to nerdtree toggle
 noremap <Leader>o :NERDTreeToggle<CR>

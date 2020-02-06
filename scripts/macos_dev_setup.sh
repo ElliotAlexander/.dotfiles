@@ -47,6 +47,9 @@ chsh -s $(which zsh)
 echo "Installing bat"
 brew install bat
 
+
+brew install ag
+
 # Install python 
 brew install python3
 
