@@ -72,6 +72,8 @@ alias syss="systemctl status"
 
 alias dc="docker-compose"
 alias dcu="docker-compose up"
+alias dcd="docker container rm $(docker ps -a -q)"
+alias dck="docker container kill $(docker ps -q)"
 
 alias weather="curl https://v2.wttr.in/"
 alias weather-southampton="curl https://v2.wttr.in/southampton"
@@ -90,3 +92,5 @@ PERL_MM_OPT="INSTALL_BASE=/home/elliot/perl5"; export PERL_MM_OPT;
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
+# Setup ignore for fzf
+export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'

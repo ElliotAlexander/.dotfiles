@@ -9,6 +9,7 @@ Plug 'scrooloose/nerdtree',{ 'on':  'NERDTreeToggle' }
 
 " Visual tweaks
 Plug 'morhetz/gruvbox'
+Plug 'srcery-colors/srcery-vim'
 
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'vim-airline/vim-airline'
@@ -114,9 +115,11 @@ let NERDTreeAutoDeleteBuffer = 1
 " Prettier nerd
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+" Show hidden files by default
+let NERDTreeShowHidden=1
 
 
-colorscheme gruvbox
+colorscheme srcery
 
 " Terminal Colours Setup 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
