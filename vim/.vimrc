@@ -94,6 +94,9 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=**/node_modules/** 
 
+" Splut to the left and right
+set splitbelow splitright 
+
 
 let g:deoplete#enable_at_startup = 1
 let g:node_host_prog = '/usr/lib/node_modules/neovim-node-host'
