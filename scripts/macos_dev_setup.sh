@@ -80,6 +80,19 @@ sudo curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 npm install -g neovim
+brew install lsd
+brew install ag
+brew tap sambadevi/powerlevel9k
+brew install powerlevel9k
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
+brew install neofetch
+brew install zsh-syntax-highlighting
+brew install zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 #Denoite
 python3 -m pip install pynvim 
@@ -87,6 +100,8 @@ python3 -m pip install pynvim
 
 echo "Ensuring all pref panes are closed."
 osascript -e 'tell application "System Preferences" to quit'
+
+defaults write com.apple.CrashReporter DialogType none
 
 
 # Networking stuff
@@ -111,7 +126,6 @@ launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
 
 
 # Security stuff
-
 
 # Disable IR controller.
 sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -bool false

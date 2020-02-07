@@ -57,6 +57,9 @@ Plug 'tpope/vim-markdown'
 Plug 'reedes/vim-pencil'
 Plug 'jtratner/vim-flavored-markdown'
 
+
+" Latex support
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -99,6 +102,10 @@ set wildignore+=**/node_modules/**
 set splitbelow splitright 
 
 
+" Latex setup
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'open -a Preview'
+
 let g:deoplete#enable_at_startup = 1
 let g:node_host_prog = '/usr/lib/node_modules/neovim-node-host'
 
@@ -119,7 +126,7 @@ let NERDTreeDirArrows = 1
 let NERDTreeShowHidden=1
 
 
-colorscheme srcery
+colorscheme gruvbox 
 
 " Terminal Colours Setup 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
