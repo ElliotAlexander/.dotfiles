@@ -17,171 +17,226 @@
 ;==========================================================
 
 [colors]
-bg = #171717  
-fg = #B8B9B4
-white = #c5c8c6
-gray = #585858
-black = #090909
-red = #a54242
-background-alt = #444
-foreground-alt = #B8B69A
-icons = #D44420
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+background = #131313
+background-alt = #333
 
-[bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
-bottom = false
-;width = 1800
-width = 100%
-height = 30
-offset-x = 8
-offset-y = 8
-margin-left = 8
-margin-right = 8
+foreground = #b2b2b2
+foreground-alt = #ee3333
 
-background = ${colors.bg}
-foreground = ${colors.fg}
+trans = #001e1e1e
+white = #eee
+grey = #444444
+pink = #d75f87
+blue = #4f97d7
+lightblue = #38908F
+purple = #875faf
+green = #20ad80
+red = #ee3333
+lightpink = #bc85a3
 
+;
+;===========================================================
+;
+
+[bar/base]
+bottom=false
+width=100%
+height=30
+offset-x = 0%
+offset-y = 0%
+background = #00000000
+
+[bar/secondary]
+monitor = ${env:MONITOR:DP-4}
+inherit = bar/base
 line-size = 3
 line-color = #f00
-
 border-size = 0
 border-color = #00000000
-
-padding-left = 1.5
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 1
-
-font-0 = JetBrainsMono-Regular:pixelsize=8;1
-font-1 = unifont:fontformat=truetype:size=9:antialias=false;0
-font-2 = siji:pixelsize=9;1
-font-3 = MaterialIcons-Regular:pixelsize=8;1
-
-modules-left = i3
+font-0 = Inconsolata Nerd Font:size=12;2
+font-1 = Inconsolata Nerd Font:size=16;2
+font-2 = Inconsolata Nerd Font:size=18;4
+modules-left = i3 arrow0 polynews arrow weather arrow5
 modules-center = 
-modules-right = polynews date
-
-tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
+modules-right = arrow3 cpu nvidia_info memory arrow2 spotify arrow1 date
 cursor-click = pointer
 cursor-scroll = ns-resize
+tray-position = right
+tray-background = ${colors.grey}
+tray-padding = 10
+tray-offset-x = 0
+
+
+;
+; Arrows
+;
+
+
+[module/arrow]
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.lightblue}
+content-background = ${colors.lightpink}
+
+[module/arrow0]
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.grey}
+content-background = ${colors.lightblue}
+
+[module/arrow1]
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.grey}
+content-background = ${colors.green}
+
+[module/arrow2]
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.green}
+content-background = ${colors.purple}
+
+[module/arrow3]
+; Purple to pink
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.purple}
+content-background = ${colors.trans}
+
+[module/arrow4]
+; pink to green
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.green}
+content-background = ${colors.pink}
+
+[module/arrow5]
+; green to grey
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.lightpink}
+content-background = ${colors.trans}
+
+[module/arrow6]
+; grey to bg
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.background}
+content-background = ${colors.grey}
+
+[module/arrow7]
+; bg to grey
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.grey}
+content-background = ${colors.background}
+
+[module/arrow8]
+; grey to bg
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.background}
+content-background = ${colors.blue}
+
+[module/arrow9]
+; grey to bg
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.background}
+content-background = ${colors.purple}
+
+[module/arrow10]
+; background to trans
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.purple}
+content-background = ${colors.trans}
+
+[module/arrow11]
+; grey to bg
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.blue}
+content-background = ${colors.trans}
+
+[module/arrow12]
+; background to trans
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.purple}
+content-background = ${colors.trans}
+
+[module/arrow13]
+; background to trans
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.background}
+content-background = ${colors.purple}
 
 [module/polynews]
 type = custom/script
-exec = ~/.config/polybar/polynews/polynews.py
+exec = python3 ~/.config/polybar/polynews/polynews.py
 interval = 30
-format-prefix =  
-format-prefix-padding = 1
-format-prefix-foreground = ${colors.icons}
 click-left = < ~/.config/polybar/polynews/current_url.txt xargs -I % xdg-open %
+format-background = ${colors.lightblue}
 
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
 
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
+[module/cputemp]
+type = custom/script
+format-underline = #e18d96
+exec = ~/.config/polybar/cpu/cpu.sh
+interval = 60
+format-background = ${color.white}
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python3 ~/.config/polybar/spotify/spotify_status.py -f '{artist}: {song}'
+format-background = ${colors.green}
 
-label-layout = %layout%
 
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
+[module/network]
+type = custom/script
+exec = ~/.config/polybar/networkmanager/network.sh
+tail = true
 
 [module/filesystem]
 type = internal/fs
 interval = 25
-
 mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = Storage: %mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
-
 [module/i3]
 type = internal/i3
-format = <label-mode> <label-state>
+format = <label-state>
 index-sort = true
-
-label-focused-font = 4
-label-unfocused-font = 4
-label-urgent-font = 4
-label-visible-font = 4
-
-label-focused = 
-;label-focused = %index%
-;label-focused-background = ${colors.gray}
-label-focused-padding = 1
-label-focused-foreground = ${colors.icons}
-
-label-unfocused = 
-;label-unfocused = %index%
-label-unfocused-padding = 1
-;label-unfocused-background = ${colors.black}
-label-unfocused-underlinde = ${colors.white}
-
-label-urgent = 
-;label-urgent = %index%!
-;label-urgent-background = ${colors.red}
-label-urgent-padding = 1
-label-urgent-foreground = ${colors.red}
-
-label-visible = 
-;label-visible = %index%
-label-visible-foreground = ${colors.white}
-label-visible-padding = 1
+format-background = ${colors.grey}
 
 [module/mpd]
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -219,14 +274,25 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-label = %percentage:2%%
+label = CPU: %percentage%%
+format-background = ${colors.purple}
+
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-label = %percentage_used%%
+label = Mem: %percentage_used%%
+format-background = ${colors.purple}
+
+[module/nvidia_info]
+type = custom/script
+tail = true
+exec-if = nvidia-smi
+format-background = ${colors.purple}
+exec = nvidia-smi --loop=1 --query-gpu=temperature.gpu,utilization.gpu,utilization.memory --format=csv,noheader,nounits | sed -ur 's|([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)|  GPU \2% \3% \1°|g'
+
 
 [module/wlan]
 type = internal/network
@@ -251,16 +317,11 @@ ramp-signal-foreground = ${colors.icons}
 [module/date]
 type = internal/date
 interval = 5
-
 date =
 date-alt = " %Y-%m-%d"
-
-time = %H:%M
+time =   %H:%M
 time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.icons}
-
+format-background = ${colors.grey}
 label = %date% %time%
 
 [module/battery]
@@ -311,13 +372,19 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/weather/weather.sh
+label-background =  ${colors.lightpink}
+interval = 600
+
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;pseudo-transparency = false
+pseudo-transparency = true 
 
 [global/wm]
 margin-top = 5

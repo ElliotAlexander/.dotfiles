@@ -13,7 +13,6 @@ country = "gb"
 
 try:
     data = requests.get('https://newsapi.org/v2/top-headlines?apiKey='+api_key+'&country='+country).json()
-
     sourceName = data['articles'][0]['source']['name']
     title = data['articles'][0]['title']
     url = data['articles'][0]['url']
