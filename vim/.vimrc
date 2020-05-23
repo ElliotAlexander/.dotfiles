@@ -22,7 +22,6 @@ Plug 'ap/vim-css-color'
 Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
 
 " Linting setup
-Plug 'Shougo/deoplete.nvim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/denite.nvim'
 Plug 'edkolev/tmuxline.vim'
@@ -60,13 +59,8 @@ Plug 'jtratner/vim-flavored-markdown'
 
 " Latex support
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 call plug#end()
 
@@ -79,6 +73,7 @@ call plug#end()
 set noswapfile
 set nobackup
 set nowb
+
          
 " Autoreload files when changed
 set autoread
@@ -101,12 +96,10 @@ set wildignore+=**/node_modules/**
 " Splut to the left and right
 set splitbelow splitright 
 
-
 " Latex setup
 autocmd Filetype tex setl updatetime=1
 let g:livepreview_previewer = 'open -a Preview'
 
-let g:deoplete#enable_at_startup = 1
 let g:node_host_prog = '/usr/lib/node_modules/neovim-node-host'
 
 let g:lightline = {
@@ -115,7 +108,6 @@ let g:lightline = {
   \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
   \     }
   \ }
-
 let g:ackprg = 'ag --nogroup --nocolor --column'
 " Always close nerd when we open a file
 let NERDTreeAutoDeleteBuffer = 1
@@ -318,3 +310,6 @@ function! StripWhitespace()
  endfunction
 
 noremap <leader>ss :call StripWhitespace()<CR>
+
+
+hi Normal guibg=NONE ctermbg=NONE
