@@ -23,7 +23,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 echo "Install OhMyZSH"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+yum install ripgrep 
 
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 
 chsh -s $(which zsh) 

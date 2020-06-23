@@ -90,3 +90,7 @@ echo "Installing Ruby 2.6"
 rvm install 2.6
 
 sudo yum install -y the_silver_searcher
+
+echo "Installing Perl Critic and CPAN"
+
+perl -MCPAN -e 'install Perl::Critic'
