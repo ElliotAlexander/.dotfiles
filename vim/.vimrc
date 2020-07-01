@@ -16,6 +16,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-css-color'
+Plug 'ntpeters/vim-better-whitespace'
 
 
 " Completion 
@@ -310,6 +311,7 @@ function! StripWhitespace()
  endfunction
 
 noremap <leader>ss :call StripWhitespace()<CR>
+autocmd BufWritePre * :call StripWhitespace()
 
 
 hi Normal guibg=NONE ctermbg=NONE
