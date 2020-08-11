@@ -1,15 +1,15 @@
 #!/bin/bash
 
 cd ~
-yum install -y neovim tmux zsh git
+sudo yum install -y neovim tmux zsh git
 
 
 git clone https://github.com/ElliotAlexander/.dotfiles
 
 
-mkdir ~.config && mkdir ~.config/nvim
+mkdir ~/.config && mkdir ~/.config/nvim
 cp ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim
-cp ~/.dotfiles/nvim/.vimrc ~/.vimrc
+cp ~/.dotfiles/vim/.vimrc ~/.vimrc
 
 cp ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 cp ~/.dotfiles/.zshrc ~/.zshrc
