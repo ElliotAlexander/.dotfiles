@@ -113,6 +113,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
@@ -125,9 +126,6 @@ mode "system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-bindsym $mod+Del mode "system"
-
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -157,7 +155,7 @@ mode "gaming" {
 }
 
 
-
+bindsym $mod+Shift+Del mode "system"
 bindsym $mod+r mode "resize"
 bindsym $mod+Shift+g mode "gaming"
 
