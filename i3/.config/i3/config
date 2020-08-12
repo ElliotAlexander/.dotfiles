@@ -21,7 +21,7 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec rxvt 
+bindsym $mod+Return exec urxvt 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -113,28 +113,11 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+set $sysmenu "system: [l]ock l[o]gout [s]uspend [h]ibernate [r]eboot sh[u]tdown"
+bindsym $mod+Shift+Delete exec --no-startup-id ./lock.sh -b=50 -n -p
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
@@ -150,14 +133,17 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
 mode "gaming" {
         bindsym $mod+Escape mode "default"
 }
 
 
-bindsym $mod+Shift+Del mode "system"
 bindsym $mod+r mode "resize"
 bindsym $mod+Shift+g mode "gaming"
+bindsym $mod+Shift+e exec --no-startup-id \
+	"i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'i3-msg exit'"
+bindsym $mod+Shift+Escape exec i3exit logout
 
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
@@ -166,7 +152,6 @@ exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec compton 
 
-bindsym $mod+Shift+Escape exec i3-exit
 
 workspace 1 output DP-2
 workspace 2 output DP-4

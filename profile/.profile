@@ -27,4 +27,4 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 feh --randomize --bg-fil ~/Pictures/Wallpapers/*
-xautolock -detectsleep -time 10 -locker ./config/i3/i3lock &
+xautolock -detectsleep -time 10 -locker ./config/i3/lock.sh &

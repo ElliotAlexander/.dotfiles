@@ -5,7 +5,7 @@ lock() {
 
 case "$1" in
     lock)
-        ./lock.sh 
+        ./lock.sh b=50 -n -p
         ;;
     logout)
         i3-msg exit
