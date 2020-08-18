@@ -114,7 +114,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 
 set $sysmenu "system: [l]ock l[o]gout [s]uspend [h]ibernate [r]eboot sh[u]tdown"
-bindsym $mod+Shift+Delete exec --no-startup-id ./lock.sh -b=50 -n -p
+bindsym $mod+Shift+Delete exec --no-startup-id ./lock.sh -b=50 -n -p & sleep 5 && xset dpms force off
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

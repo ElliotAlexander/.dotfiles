@@ -2,7 +2,7 @@
 
 #
 #   Source: https://github.com/guimeira/i3lock-fancy-multimonitor
-#   requires: imagemagick scrot
+#   requires: imagemagick scrot xssstate
 #
 #
 #
@@ -12,7 +12,7 @@
 
 # Defaults
 
-
+timeout="10000"
 DISPLAY_RE="([0-9]+)x([0-9]+)\\+([0-9]+)\\+([0-9]+)"
 IMAGE_RE="([0-9]+)x([0-9]+)"
 FOLDER="$(dirname "$(readlink -f "$0")")"
@@ -108,7 +108,14 @@ fi
 eval convert $PARAMS
 
 #Lock the screen:
-i3lock -i $OUTPUT_IMAGE -t
+i3lock -i $OUTPUT_IMAGE -t -f -e 
+
+timeout="10000"
+while [[ $(pgrep -x i3lock) ]]; do 
+   [[ $timeout -lt $(xssstate -i) ]] && xset dpms force off 
+   sleep 5 
+done
 
 #Remove the generated image:
 rm $OUTPUT_IMAGE
+
