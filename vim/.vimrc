@@ -74,13 +74,11 @@ call plug#end()
 set noswapfile
 set nobackup
 set nowb
-
          
 " Autoreload files when changed
 set autoread
 
 " Completion ignore paths
-
 set wildmode=list:longest
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
 set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
@@ -110,14 +108,12 @@ let g:lightline = {
   \     }
   \ }
 let g:ackprg = 'ag --nogroup --nocolor --column'
-" Always close nerd when we open a file
-let NERDTreeAutoDeleteBuffer = 1
+
 " Prettier nerd
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 " Show hidden files by default
 let NERDTreeShowHidden=1
-
 
 colorscheme gruvbox 
 
@@ -131,13 +127,10 @@ set number
 set mouse=a
 
 " Search tweaks
-"
-"
 set incsearch       
 set hlsearch       
 set ignorecase     
 set smartcase     
-
 
 " Theme setup
 set background=dark
@@ -164,7 +157,13 @@ nnoremap <silent> ; :All<cr>
 map <A-;> :Ag<CR>
 command! -bang -nargs=*  All
   \ call fzf#run(fzf#wrap({'source': 'rg --files --hidden --no-ignore-vcs --glob "!{node_modules/*,.git/*}"', 'down': '40%', 'options': '--expect=ctrl-t,ctrl-x,ctrl-v --multi --reverse' }))
+let g:fzf_preview_window = 'right:60%'
 
+" Map Grep to Leader + semi-colon
+map <Leader><A-;> :Rg<CR>
+
+" Rainbow
+let g:rainbow_active = 1
 
 " Map Ctrl-O to nerdtree toggle
 noremap <Leader>o :NERDTreeToggle<CR>
@@ -206,9 +205,8 @@ command! -nargs=* Search :vimgrep /<q-args>/ **/*
 " Use two spaces for tabs.
 filetype plugin indent on
 set tabstop=4
-set shiftwidth=3
+set shiftwidth=4
 set expandtab
-
 
 " air-line
 let g:airline_powerline_fonts = 1
@@ -241,27 +239,27 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 " Perl Critic
-let g:ale_perl_perl_executable = 'perl'
-let g:ale_perl_perl_options = '-c -Mwarnings -Ilib -It/lib'
-let g:ale_perl_perlcritic_executable = 'perlcritic'
-let g:ale_perl_perlcritic_options = ''
-let g:ale_perl_perlcritic_profile = '.perlcriticrc'
 let g:ale_perl_perlcritic_showrules = 1
+let g:ale_perl_perl_options       = '-cW -Ilib -I./'
+let g:ale_perl_perlcritic_options = '--stern'
 
 " Ale linting
 let g:ale_linters = { 
          \ 'javascript': ['standard', 'prettier', 'eslint'], 
          \ 'css': ['stylelint','prettier'],
          \ 'typescript': ['standard', 'prettier', 'eslint'],
-         \ 'perl': ['perl', 'perlcritic', 'perltidy'], }
+         \ 'perl': ['perl', 'perlcritic'] }
 
-" Use eslint
 let g:ale_fixers = {
  \ 'javascript': ['eslint', 'prettier'],
  \ 'typescript': ['eslint', 'prettier'],
  \ 'sass': ['prettier'],
  \ 'perl': ['perltidy', 'perlcritic'],
  \ }
+
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1
 
 " Prettier for coc
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -283,23 +281,6 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-let g:ale_fix_on_save = 1
-" Perl critic setup
-let g:ale_perl_perl_options = '-c -Mwarnings -Ilib -It/lib'
-"le_perl_perl_options = '-c -Mwarnings -Ilib -It/lib' Display perl critic violations as errors
-let g:ale_type_map = {
-\ 'perlcritic': {'ES': 'WS', 'E': 'W'},
-\}
-
-" Rainbow
-let g:rainbow_active = 1
-
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()

@@ -26,8 +26,4 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export TERM=xterm-256color
-export PATH=$PATH:/bin/snap
-
 feh --randomize --bg-fil ~/Pictures/Wallpapers/*
-xautolock -detectsleep -time 10 -locker ./config/i3/lock.sh &
