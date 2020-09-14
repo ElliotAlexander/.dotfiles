@@ -112,6 +112,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
+bindsym $mod+Shift+Del exit
 
 mode "system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -156,10 +157,8 @@ mode "gaming" {
         bindsym $mod+Escape mode "default"
 }
 
-
-
-bindsym $mod+r mode "resize"
 bindsym $mod+Shift+g mode "gaming"
+bindsym $mod+r mode "resize"
 
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
@@ -176,5 +175,8 @@ workspace 3 output HDMI-0
 
 gaps inner 18
 gaps outer 20 
-# gaps top 50
 smart_gaps on
+
+smart_borders on
+smart_borders no_gaps
+border_radius 2
