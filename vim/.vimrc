@@ -27,11 +27,9 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/denite.nvim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'dense-analysis/ale'
-Plug 'HerringtonDarkholme/yats.vim'
 
 " Fuzzy searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug '~/.fzf'
@@ -54,9 +52,6 @@ Plug 'kablamo/vim-git-log'
 
 "  Markdown
 Plug 'tpope/vim-markdown'
-Plug 'reedes/vim-pencil'
-Plug 'jtratner/vim-flavored-markdown'
-
 
 " Latex support
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -303,5 +298,9 @@ function! StripWhitespace()
 noremap <leader>ss :call StripWhitespace()<CR>
 autocmd BufWritePre * :call StripWhitespace()
 
+
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType pm setlocal shiftwidth=2 tabstop=2
+autocmd FileType ts setlocal shiftwidth=2 tabstop=2
 
 hi Normal guibg=NONE ctermbg=NONE
