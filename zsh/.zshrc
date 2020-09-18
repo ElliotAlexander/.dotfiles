@@ -14,7 +14,7 @@ ZSH_THEME="cloud"
 export FZF_BASE=/path/to/fzf/install/dir
 
 plugins=(
-	brew 
+	brew
 	dirhistory
 	extract
 	fancy-ctrl-z
@@ -22,9 +22,9 @@ plugins=(
 	github
 	globalias
 	magic-enter
-	osx 
-	pip 
-	python 
+	osx
+	pip
+	python
 	ssh-agent
 	tmux
 	web-search
@@ -35,7 +35,7 @@ plugins=(
 
 
 export SSH_KEY_PATH="~/.ssh/rsa_id"
-export EDITOR=vim 
+export EDITOR=vim
 
 alias bat="/usr/local/bat/bat"
 
@@ -55,7 +55,7 @@ alias c="clear"
 alias g='git'
 alias gp="git push"
 alias gl="git pull --recurse-submodules"
-alias gb="git --no-pager branch" 
+alias gb="git --no-pager branch"
 
 alias tmux="TERM=xterm-256color tmux -u"
 alias tmuxm="TERM=xterm-256color tmux new-session \; split-window -h \; split-window -v \; attach"
@@ -91,4 +91,4 @@ PERL_MM_OPT="INSTALL_BASE=/home/elliot/perl5"; export PERL_MM_OPT;
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:/snap/bin/:$HOME/.rvm/bin"
-
+eval "$(ssh-agent)"
