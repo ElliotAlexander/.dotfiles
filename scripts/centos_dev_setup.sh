@@ -2,7 +2,7 @@
 
 cd /home/$USER/
 
-sudo yum update && sudo yum -y install zsh wget git tmux
+sudo yum update && sudo yum -y install zsh wget git tmux stow
 chsh -s /bin/zsh $(whoami)
 echo "Your shell is now: $SHELL"
 
