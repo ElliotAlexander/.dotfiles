@@ -37,10 +37,8 @@ sudo usermod -aG docker $(whoami)
 sudo systemctl enable docker.service
 sudo systemctl start docker.service
 
-
 # Setup docker-compose
-sudo yum install -yepel-release
-sudo yum install -y python-pip
+sudo yum install -y epel-release python-pip
 sudo pip install -y docker-compose
 sudo yum upgrade python*
 
@@ -61,20 +59,16 @@ sudo npm install -g neovim
 sudo npm install -g typescript
 sudo n stable
 
-
 # Python 
 sudo yum install centos-release-scl
 sudo yum install rh-python36
 scl enable rh-python36 zsh
 pip install lxml --user
 
-
 # diff-so-fancy
-
 sudo wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy > /usr/local/bin
 
 # Install ruby
-
 yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel \
    libyaml-devel libffi-devel openssl-devel make \
    bzip2 autoconf automake libtool bison iconv-devel sqlite-devel
@@ -84,7 +78,6 @@ curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
 curl -L get.rvm.io | bash -s stable
 source /home/$USER/.rvm/scripts/rvm
 rvm reload
-
 
 echo "Installing Ruby 2.6" 
 rvm install 2.6
