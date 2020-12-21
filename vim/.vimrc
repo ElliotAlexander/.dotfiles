@@ -18,21 +18,14 @@ Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-css-color'
 Plug 'ntpeters/vim-better-whitespace'
 
-
-" Completion
-Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
-
 " Linting setup
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'Shougo/denite.nvim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'dense-analysis/ale'
 
 " Fuzzy searching
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug '~/.fzf'
 
 " Node
 Plug 'neovim/node-host'
@@ -59,6 +52,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
 call plug#end()
+
+let g:coc_disable_startup_warning = 1
 
 "
 " Options
