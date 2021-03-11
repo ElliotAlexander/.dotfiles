@@ -6,8 +6,8 @@ ENABLE_CORRECTION="true"
 
 
 # Magic Enter
-MAGIC_ENTER_GIT_COMMAND="git status -v && exag && echo -e '\n'"
-MAGIC_ENTER_OTHER_COMMAND="la && echo -e '\n'"
+MAGIC_ENTER_GIT_COMMAND="nocorrect git status -v && exag && echo -e '\n'"
+MAGIC_ENTER_OTHER_COMMAND="nocorrect la && echo -e '\n'"
 
 ZSH_THEME="cloud"
 
@@ -34,7 +34,7 @@ plugins=(
 )
 
 
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/id"
 export EDITOR=vim
 
 alias bat="/usr/local/bat/bat"

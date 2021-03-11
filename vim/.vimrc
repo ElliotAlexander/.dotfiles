@@ -253,7 +253,6 @@ let g:ale_fixers = {
  \ 'javascript': ['eslint', 'prettier'],
  \ 'typescript': ['eslint', 'prettier'],
  \ 'sass': ['prettier'],
- \ 'perl': ['perltidy', 'perlcritic'],
  \ }
 
 let g:ale_sign_error = '❌'
