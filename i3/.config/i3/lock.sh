@@ -1,120 +1,138 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Author: Dolores Portalatin <hello@doloresportalatin.info>
+# Dependencies: imagemagick, i3lock-color-git, scrot, wmctrl (optional)
+set -o errexit -o noclobber -o nounset
 
-#
-#   Source: https://github.com/guimeira/i3lock-fancy-multimonitor
-#   requires: imagemagick scrot xssstate
-#
-#
-#
-#
+hue=(-level "0%,100%,0.6")
+effect=(-filter Gaussian -resize 20 -define "filter:sigma=1.5" -resize 500.5%)
+# default system sans-serif font
+font=$(convert -list font | awk "{ a[NR] = \$2 } /family: $(fc-match sans -f "%{family}\n")/ { print a[NR-1]; exit }")
+image=$(mktemp --suffix=.png)
+shot=(import -window root)
+desktop=""
+i3lock_cmd=(i3lock -i "$image")
+shot_custom=false
 
+options="Options:
+    -h, --help       This help menu.
 
-# Defaults
+    -d, --desktop    Attempt to minimize all windows before locking.
 
-timeout="10000"
-DISPLAY_RE="([0-9]+)x([0-9]+)\\+([0-9]+)\\+([0-9]+)"
-IMAGE_RE="([0-9]+)x([0-9]+)"
-FOLDER="$(dirname "$(readlink -f "$0")")"
-LOCK="$FOLDER/lock.png"
-TEXT="$FOLDER/text.png"
-PARAMS=""
-OUTPUT_IMAGE="/tmp/i3lock.png"
-DISPLAY_TEXT=true
-PIXELATE=TRUE
-BLURTYPE="1x1"
+    -g, --greyscale  Set background to greyscale instead of color.
 
-# Read user input
-POSITIONAL=()
-for i in "$@"
-do
-  case $i in
-  -h|--help)
-    echo "lock: Syntax: lock [-n|--no-text] [-p|--pixelate] [-b=VAL|--blur=VAL]"
-    echo "for correct blur values, read: http://www.imagemagick.org/Usage/blur/#blur_args"
-    exit
-    shift
-    ;;
-  -b=*|--blur=*)
-    VAL="${i#*=}"
-    BLURTYPE=(${VAL//=/ }) 
-    shift
-    ;;
-  -n|--no-text)
-    DISPLAY_TEXT=false
-    shift # past argument
-    ;;
-  -p|--pixelate)
-    PIXELATE=true
-    shift # past argument
-    ;;
-  *)    # unknown option
-    echo "unknown option: $i"
-    exit
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
-  esac
-done
-set -- "${POSITIONAL[@]}" # restore positional parameters
+    -p, --pixelate   Pixelate the background instead of blur, runs faster.
 
-#Take screensho:
-scrot -z $OUTPUT_IMAGE
+    -f <fontname>, --font <fontname>  Set a custom font.
 
-#Get dimensions of the lock image:
-LOCK_IMAGE_INFO=`identify $LOCK`
-[[ $LOCK_IMAGE_INFO =~ $IMAGE_RE ]]
-IMAGE_WIDTH=${BASH_REMATCH[1]}
-IMAGE_HEIGHT=${BASH_REMATCH[2]}
+    -t <text>, --text <text> Set a custom text prompt.
 
-if $DISPLAY_TEXT ; then
-  #Get dimensions of the text image:
-  TEXT_IMAGE_INFO=`identify $TEXT`
-  [[ $TEXT_IMAGE_INFO =~ $IMAGE_RE ]]
-  TEXT_WIDTH=${BASH_REMATCH[1]}
-  TEXT_HEIGHT=${BASH_REMATCH[2]}
-fi
+    -l, --listfonts  Display a list of possible fonts for use with -f/--font.
+                     Note: this option will not lock the screen, it displays
+                     the list and exits immediately.
 
-#Execute xrandr to get information about the monitors:
-while read LINE
-do
-  #If we are reading the line that contains the position information:
-  if [[ $LINE =~ $DISPLAY_RE ]]; then
-    #Extract information and append some parameters to the ones that will be given to ImageMagick:
-    WIDTH=${BASH_REMATCH[1]}
-    HEIGHT=${BASH_REMATCH[2]}
-    X=${BASH_REMATCH[3]}
-    Y=${BASH_REMATCH[4]}
-    POS_X=$(($X+$WIDTH/2-$IMAGE_WIDTH/2))
-    POS_Y=$(($Y+$HEIGHT/2-$IMAGE_HEIGHT/2))
+    -n, --nofork     Do not fork i3lock after starting.
 
-    PARAMS="$PARAMS '$LOCK' '-geometry' '+$POS_X+$POS_Y' '-composite'"
+    --               Must be last option. Set command to use for taking a
+                     screenshot. Default is 'import -window root'. Using 'scrot'
+                     or 'maim' will increase script speed and allow setting
+                     custom flags like having a delay."
 
-    if $DISPLAY_TEXT ; then
-        TEXT_X=$(($X+$WIDTH/2-$TEXT_WIDTH/2))
-        TEXT_Y=$(($Y+$HEIGHT/2-$TEXT_HEIGHT/2+200))
-        PARAMS="$PARAMS '$TEXT' '-geometry' '+$TEXT_X+$TEXT_Y' '-composite'"
-    fi
-  fi
-done <<<"`xrandr`"
+# move pipefail down as for some reason "convert -list font" returns 1
+set -o pipefail
+trap 'rm -f "$image"' EXIT
+temp="$(getopt -o :hdnpglt:f: -l desktop,help,listfonts,nofork,pixelate,greyscale,text:,font: --name "$0" -- "$@")"
+eval set -- "$temp"
 
-#Execute ImageMagick:
-if $PIXELATE ; then
-  PARAMS="'$OUTPUT_IMAGE' '-scale' '10%' '-scale' '1000%' $PARAMS '$OUTPUT_IMAGE'"
-else
-  PARAMS="'$OUTPUT_IMAGE' '-level' '0%,100%,0.6' '-blur' '$BLURTYPE' $PARAMS '$OUTPUT_IMAGE'"
-fi
+# l10n support
+text="Type password to unlock"
+case "${LANG:-}" in
+    af_* ) text="Tik wagwoord om te ontsluit" ;; # Afrikaans
+    de_* ) text="Bitte Passwort eingeben" ;; # Deutsch
+    da_* ) text="Indtast adgangskode" ;; # Danish
+    en_* ) text="Type password to unlock" ;; # English
+    es_* ) text="Ingrese su contraseña" ;; # Española
+    fr_* ) text="Entrez votre mot de passe" ;; # Français
+    he_* ) text="הליענה לטבל המסיס דלקה" ;; # Hebrew עברית (convert doesn't play bidi well)
+    hi_* ) text="अनलॉक करने के लिए पासवर्ड टाईप करें" ;; #Hindi
+    id_* ) text="Masukkan kata sandi Anda" ;; # Bahasa Indonesia
+    it_* ) text="Inserisci la password" ;; # Italian
+    ja_* ) text="パスワードを入力してください" ;; # Japanese
+    lv_* ) text="Ievadi paroli" ;; # Latvian
+    nb_* ) text="Skriv inn passord" ;; # Norwegian
+    pl_* ) text="Podaj hasło" ;; # Polish
+    pt_* ) text="Digite a senha para desbloquear" ;; # Português
+    tr_* ) text="Giriş yapmak için şifrenizi girin" ;; # Turkish
+    ru_* ) text="Введите пароль" ;; # Russian
+    * ) text="Type password to unlock" ;; # Default to English
+esac
 
-eval convert $PARAMS
-
-#Lock the screen:
-i3lock -i $OUTPUT_IMAGE -t -f -e 
-
-timeout="10000"
-while [[ $(pgrep -x i3lock) ]]; do 
-   [[ $timeout -lt $(xssstate -i) ]] && xset dpms force off 
-   sleep 5 
+while true ; do
+    case "$1" in
+        -h|--help)
+            printf "Usage: %s [options]\n\n%s\n\n" "${0##*/}" "$options"; exit 1 ;;
+        -d|--desktop) desktop=$(command -V wmctrl) ; shift ;;
+        -g|--greyscale) hue=(-level "0%,100%,0.6" -set colorspace Gray -average) ; shift ;;
+        -p|--pixelate) effect=(-scale 10% -scale 1000%) ; shift ;;
+        -f|--font)
+            case "$2" in
+                "") shift 2 ;;
+                *) font=$2 ; shift 2 ;;
+            esac ;;
+        -t|--text) text=$2 ; shift 2 ;;
+        -l|--listfonts)
+	    convert -list font | awk -F: '/Font: / { print $2 }' | sort -du | command -- ${PAGER:-less}
+	    exit 0 ;;
+	-n|--nofork) i3lock_cmd+=(--nofork) ; shift ;;
+        --) shift; shot_custom=true; break ;;
+        *) echo "error" ; exit 1 ;;
+    esac
 done
 
-#Remove the generated image:
-rm $OUTPUT_IMAGE
+if "$shot_custom" && [[ $# -gt 0 ]]; then
+    shot=("$@");
+fi
+
+command -- "${shot[@]}" "$image"
+
+value="60" #brightness value to compare to
+
+color=$(convert "$image" -gravity center -crop 100x100+0+0 +repage -colorspace hsb \
+    -resize 1x1 txt:- | awk -F '[%$]' 'NR==2{gsub(",",""); printf "%.0f\n", $(NF-1)}');
+
+if [[ $color -gt $value ]]; then #white background image and black text
+    bw="black"
+    icon="/usr/share/i3lock-fancy/icons/lockdark.png"
+    param=("--insidecolor=0000001c" "--ringcolor=0000003e" \
+        "--linecolor=00000000" "--keyhlcolor=ffffff80" "--ringvercolor=ffffff00" \
+        "--separatorcolor=22222260" "--insidevercolor=ffffff1c" \
+        "--ringwrongcolor=ffffff55" "--insidewrongcolor=ffffff1c" \
+        "--verifcolor=ffffff00" "--wrongcolor=ff000000" "--timecolor=ffffff00" \
+        "--datecolor=ffffff00" "--layoutcolor=ffffff00")
+else #black
+    bw="white"
+    icon="/usr/share/i3lock-fancy/icons/lock.png"
+    param=("--insidecolor=ffffff1c" "--ringcolor=ffffff3e" \
+        "--linecolor=ffffff00" "--keyhlcolor=00000080" "--ringvercolor=00000000" \
+        "--separatorcolor=22222260" "--insidevercolor=0000001c" \
+        "--ringwrongcolor=00000055" "--insidewrongcolor=0000001c" \
+        "--verifcolor=00000000" "--wrongcolor=ff000000" "--timecolor=00000000" \
+        "--datecolor=00000000" "--layoutcolor=00000000")
+fi
+
+convert "$image" "${hue[@]}" "${effect[@]}" -font "$font" -pointsize 26 -fill "$bw" -gravity center \
+    -annotate +0+160 "$text" "$icon" -gravity center -composite "$image"
+
+# If invoked with -d/--desktop, we'll attempt to minimize all windows (ie. show
+# the desktop) before locking.
+${desktop} ${desktop:+-k on}
+
+# try to use i3lock with prepared parameters
+if ! "${i3lock_cmd[@]}" "${param[@]}" >/dev/null 2>&1; then
+    # We have failed, lets get back to stock one
+    "${i3lock_cmd[@]}"
+fi
+
+# As above, if we were passed -d/--desktop, we'll attempt to restore all windows
+# after unlocking.
+${desktop} ${desktop:+-k off}
 

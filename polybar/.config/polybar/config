@@ -47,7 +47,7 @@ offset-y = 0%
 background = #00000000
 
 [bar/secondary]
-monitor = ${env:MONITOR:DP-2}
+monitor = ${env:MONITOR:HDMI-2}
 inherit = bar/base
 line-size = 3
 line-color = #f00
