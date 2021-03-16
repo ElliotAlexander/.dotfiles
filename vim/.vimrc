@@ -1,5 +1,5 @@
 nnoremap <SPACE> <Nop>
-let mapleader = "\<Space>" 
+let mapleader = "\<Space>"
 set encoding=utf8
 
 call plug#begin('~/.vim/plugged')
@@ -18,23 +18,14 @@ Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-css-color'
 Plug 'ntpeters/vim-better-whitespace'
 
-
-" Completion 
-Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
-
 " Linting setup
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'Shougo/denite.nvim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'dense-analysis/ale'
-Plug 'HerringtonDarkholme/yats.vim'
 
 " Fuzzy searching
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug '~/.fzf'
 
 " Node
 Plug 'neovim/node-host'
@@ -43,7 +34,7 @@ Plug 'neoclide/npm.nvim', {'do' : 'npm install'}
 "Quality of life
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-eunuch' " Unix commands in vim
-Plug 'airblade/vim-gitgutter' 
+Plug 'airblade/vim-gitgutter'
 Plug 'dkprice/vim-easygrep'
 Plug 'HendrikPetertje/vimify'
 Plug 'christoomey/vim-tmux-navigator'
@@ -54,9 +45,6 @@ Plug 'kablamo/vim-git-log'
 
 "  Markdown
 Plug 'tpope/vim-markdown'
-Plug 'reedes/vim-pencil'
-Plug 'jtratner/vim-flavored-markdown'
-
 
 " Latex support
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -64,6 +52,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
 call plug#end()
+
+let g:coc_disable_startup_warning = 1
 
 "
 " Options
@@ -74,7 +64,7 @@ call plug#end()
 set noswapfile
 set nobackup
 set nowb
-         
+
 " Autoreload files when changed
 set autoread
 
@@ -90,10 +80,19 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
-set wildignore+=**/node_modules/** 
+set wildignore+=**/node_modules/**
 
-" Splut to the left and right
-set splitbelow splitright 
+" line numbering system setup
+:set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+" Split to the left and right
+set splitbelow splitright
 
 " Latex setup
 autocmd Filetype tex setl updatetime=1
@@ -115,9 +114,9 @@ let NERDTreeDirArrows = 1
 " Show hidden files by default
 let NERDTreeShowHidden=1
 
-colorscheme gruvbox 
+colorscheme gruvbox
 
-" Terminal Colours Setup 
+" Terminal Colours Setup
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set t_Co=256
 filetype indent plugin on
@@ -127,10 +126,10 @@ set number
 set mouse=a
 
 " Search tweaks
-set incsearch       
-set hlsearch       
-set ignorecase     
-set smartcase     
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
 
 " Theme setup
 set background=dark
@@ -167,7 +166,7 @@ let g:rainbow_active = 1
 
 " Map Ctrl-O to nerdtree toggle
 noremap <Leader>o :NERDTreeToggle<CR>
-" NERDTree Open current file 
+" NERDTree Open current file
 noremap <silent> <Leader>v :NERDTreeFind<CR>
 
 map <Leader><up> :tabr<CR>
@@ -244,8 +243,8 @@ let g:ale_perl_perl_options       = '-cW -Ilib -I./'
 let g:ale_perl_perlcritic_options = '--stern'
 
 " Ale linting
-let g:ale_linters = { 
-         \ 'javascript': ['standard', 'prettier', 'eslint'], 
+let g:ale_linters = {
+         \ 'javascript': ['standard', 'prettier', 'eslint'],
          \ 'css': ['stylelint','prettier'],
          \ 'typescript': ['standard', 'prettier', 'eslint'],
          \ 'perl': ['perl', 'perlcritic'] }
@@ -254,7 +253,6 @@ let g:ale_fixers = {
  \ 'javascript': ['eslint', 'prettier'],
  \ 'typescript': ['eslint', 'prettier'],
  \ 'sass': ['prettier'],
- \ 'perl': ['perltidy', 'perlcritic'],
  \ }
 
 let g:ale_sign_error = '❌'
@@ -268,9 +266,9 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-pairs',
   \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier', 
-  \ 'coc-json', 
+  \ 'coc-eslint',
+  \ 'coc-prettier',
+  \ 'coc-json',
   \ ]
 
 
@@ -294,5 +292,9 @@ function! StripWhitespace()
 noremap <leader>ss :call StripWhitespace()<CR>
 autocmd BufWritePre * :call StripWhitespace()
 
+
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType pm setlocal shiftwidth=2 tabstop=2
+autocmd FileType ts setlocal shiftwidth=2 tabstop=2
 
 hi Normal guibg=NONE ctermbg=NONE
