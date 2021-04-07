@@ -1,13 +1,13 @@
 [user]
-	email = ep1e16@soton.ac.uk
-    name = Elliot Alexander
+	email = elliot@netcraft.com
+	name = Elliot Alexander
 [credential]
 	helper = cache --timeout 3600
 [pager]
        diff = diff-so-fancy | less --tabs=1,5 -RFX
        show = diff-so-fancy | less --tabs=1,5 -RFX
 [core]
-	editor = vim
+	editor = nvim
 	pager = less -FRX
 [color]
 	ui = true
