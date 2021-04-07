@@ -96,3 +96,7 @@ PERL_MM_OPT="INSTALL_BASE=/home/elliot/perl5"; export PERL_MM_OPT;
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:/snap/bin/:$HOME/.rvm/bin"
 eval "$(ssh-agent)"
+PATH="$HOME/.local/bin:$PATH"
+
+# Krew
+PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
