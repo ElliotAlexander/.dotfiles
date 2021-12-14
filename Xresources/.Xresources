@@ -1,6 +1,6 @@
 Xft.dpi:                        109
-URxvt*termName:                 xterm-256color 
-URxvt.font: xft:Hack Nerd Font Mono:size=9
+URxvt*termName:                 xterm-256color
+URxvt.font: xft:Hack:size=9
 URxvt.depth:                    0
 URxvt*lineSpace:                1
 URxvt.letterSpace:              -1

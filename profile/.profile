@@ -31,4 +31,3 @@ export TERMINAL=/usr/bin/urxvt
 export PATH=$PATH:/bin/snap
 
 feh --randomize --bg-fil ~/Pictures/Wallpapers/*
-xautolock -detectsleep -time 10 -locker ./config/i3/lock.sh &

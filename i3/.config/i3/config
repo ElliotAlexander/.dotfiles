@@ -21,7 +21,7 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt 
+bindsym $mod+Return exec urxvt -e /usr/bin/zsh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -111,8 +111,6 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+Del exit
 
 set $sysmenu "system: [l]ock l[o]gout [s]uspend [h]ibernate [r]eboot sh[u]tdown"
 bindsym $mod+Shift+Delete exec --no-startup-id ./lock.sh -b=50 -n -p & sleep 5 && xset dpms force off
@@ -144,24 +142,47 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Shift+g mode "gaming"
 bindsym $mod+Shift+e exec --no-startup-id \
 	"i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'i3-msg exit'"
-bindsym $mod+Shift+Escape exec i3exit logout
+bindsym $mod+Shift+Escape exec i3lock-fancy
 
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
 
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec compton 
-
+exec compton
+exec xautolock -detectsleep -time 1 -corners -locker i3lock-fancy
 
 workspace 1 output DP-2
 workspace 2 output DP-4
 workspace 3 output HDMI-0
 
 gaps inner 18
-gaps outer 20 
+gaps outer 20
 smart_gaps on
 
 smart_borders on
 smart_borders no_gaps
-border_radius 2
+border_radius 7
+
+# Disable notify-send, ubuntu's default notification manager
+# Use dunst instead
+exec killall -q notify-osd
+exec --no-startup-id dunst -config ~/.i3/config_dunst
+
+# NM-Applet
+exec --no-startup-id nm-applet
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
+# Brightness
+bindsym XF86MonBrightnessUp exec  --no-startup-id light -s sysfs/backlight/intel_backlight -A 5
+bindsym XF86MonBrightnessDown exec  --no-startup-id light -s sysfs/backlight/intel_backlight -U 6
+# Play pause
+bindsym XF86AudioPlay exec playerctl play-pause
+
+# Print Screen
+bindsym $mod+Shift+P exec flameshot gui
+
+

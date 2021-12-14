@@ -22,7 +22,7 @@ plugins=(
 	github
 	globalias
 	magic-enter
-	osx
+    macos
 	pip
 	python
 	ssh-agent
@@ -38,7 +38,7 @@ export SSH_KEY_PATH="~/.ssh/id"
 export EDITOR=vim
 
 export TERM=xterm-256color
-export SPICETIFY_INSTALL="/home/elliot/spicetify-cli"  
+export SPICETIFY_INSTALL="/home/elliot/spicetify-cli"
 export PATH="$SPICETIFY_INSTALL:$PATH"
 
 alias bat="/usr/local/bat/bat"
