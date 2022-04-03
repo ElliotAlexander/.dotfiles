@@ -149,8 +149,8 @@ new_window 1pixel
 
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec compton
-exec xautolock -detectsleep -time 1 -corners -locker i3lock-fancy
+exec_always --no-startup-id compton
+exec_always --no=startup-id xautolock -detectsleep -time 1 -corners +00- -locker i3lock-fancy
 
 workspace 1 output DP-2
 workspace 2 output DP-4
@@ -172,10 +172,19 @@ exec --no-startup-id dunst -config ~/.i3/config_dunst
 # NM-Applet
 exec --no-startup-id nm-applet
 
+# Pulse Systray applet
+exec --no-startup-id pasystray
+
+# Bluetooth applet
+exec --no-startup-id blueman-tray
+
+# Autorandr fixes
+exec --no-startup-id autorandr -c
+
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-control --volume-max 130 up
+bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-control --volume-max 130 down
+bindsym XF86AudioMute exec --no-startup-id pulseaudio-control togmute
 # Brightness
 bindsym XF86MonBrightnessUp exec  --no-startup-id light -s sysfs/backlight/intel_backlight -A 5
 bindsym XF86MonBrightnessDown exec  --no-startup-id light -s sysfs/backlight/intel_backlight -U 6
