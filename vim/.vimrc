@@ -11,6 +11,9 @@ Plug 'scrooloose/nerdtree',{ 'on':  'NERDTreeToggle' }
 Plug 'morhetz/gruvbox'
 Plug 'srcery-colors/srcery-vim'
 
+" Powerpoints
+Plug 'dhruvasagar/vim-marp'
+
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -22,6 +25,12 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'dense-analysis/ale'
+Plug 'google/vim-jsonnet'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Terraform
+Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-packer'
 
 " Fuzzy searching
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
