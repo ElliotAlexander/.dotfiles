@@ -37,6 +37,9 @@ export SSH_KEY_PATH="~/.ssh/id"
 export EDITOR=vim
 export TERM=xterm-256color
 
+# Without this, QT 5 applications won't work correctly
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 # Aliases
 alias bat="/usr/local/bat/bat"
 alias la="ls -AXb --group-directories-first --sort=extension"
@@ -119,6 +122,7 @@ export PATH=/home/elliot/bin:$PATH
 
 # Go is annoying
 export GO111MODULE=on
+export PATH=$PATH:~/shell-tools/
 export PATH=$PATH:/usr/local/go/bin
 export PATH=/home/elliot/.pyenv/versions/3.7.2/bin:$PATH
 export PATH="$(go env GOPATH)/src/github.com/terraform-docs/terraform-docs/bin/$(uname | tr '[:upper:]' '[:lower:]')-amd64/terraform-docs:$PATH"
@@ -128,10 +132,14 @@ export TERRAGRUNT_DOWNLOAD=/home/elliot/dev/infrastructure/.terragrunt_cache
 
 # This has to be after vault.sh
 export VAULT_ADDR="https://vault.yellowdog.tech:8200"
-source ~/vault.sh
 
+# For some reason *.sh isn't working here.
+source ~/shell-tools/start.sh
+
+source ~/zsh/kubernetes.sh
 source ~/zsh/prompt.zsh
 
 # Start tmux
 if [ "$TMUX" = "" ]; then tmux; fi
 
+export PATH=$PATH:/home/elliot/.spicetify

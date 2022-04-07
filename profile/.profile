@@ -33,6 +33,6 @@ export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
-feh --randomize --bg-fil ~/Pictures/Wallpapers/*
-
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+xrandr --auto

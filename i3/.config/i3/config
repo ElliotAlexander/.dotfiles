@@ -144,6 +144,8 @@ bindsym $mod+Shift+e exec --no-startup-id \
 	"i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'i3-msg exit'"
 bindsym $mod+Shift+Escape exec i3lock-fancy
 
+bindsym $mod+Escape exec xrandr --auto && autorandr -c
+
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
 
@@ -178,8 +180,13 @@ exec --no-startup-id pasystray
 # Bluetooth applet
 exec --no-startup-id blueman-tray
 
+# Force resolution refresh once changed
+exec --no-startup-id xrandr --auto
+
 # Autorandr fixes
 exec --no-startup-id autorandr -c
+
+exec --no-startup-id feh --randomize --bg-fil ~/Pictures/Wallpapers/*
 
 # Volume control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-control --volume-max 130 up
@@ -193,5 +200,4 @@ bindsym XF86AudioPlay exec playerctl play-pause
 
 # Print Screen
 bindsym $mod+Shift+P exec flameshot gui
-
-
+bindsym Print exec flameshot gui
