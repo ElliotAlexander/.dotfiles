@@ -129,7 +129,8 @@ def run():
     data = get_data()
 
     if data["status"] == 1 and data["model"] != 'unknown':
-        print("L: {0} | R: {1}".format(data["charge"]["left"], data["charge"]["right"]))
+        if data["charge"]["left"] > 0 and data["charge"]["right"] > 0:
+            print("L: {0} | R: {1}".format(data["charge"]["left"], data["charge"]["right"]))
 
 if __name__ == '__main__':
     run()
