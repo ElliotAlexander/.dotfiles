@@ -23,6 +23,12 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec urxvt -e /usr/bin/zsh
 
+# start morgen
+bindsym $mod+c exec morgen
+
+# Start firefox
+bindsym $mod+Shift+f exec firefox
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -151,7 +157,7 @@ new_window 1pixel
 
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id compton
+exec_always --no-startup-id compton --config ~/.config/compton.conf -b
 exec_always --no=startup-id xautolock -detectsleep -time 1 -corners +00- -locker i3lock-fancy
 
 workspace 1 output DP-2
