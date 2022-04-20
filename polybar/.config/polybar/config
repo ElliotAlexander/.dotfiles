@@ -26,7 +26,7 @@ font-3 = Siji:pixelsize=11;1
 font-4 = FontAwesome:size=11;0
 
 
-modules-left = i3 pulseaudio-control backlight network-traffic system-uptime-pretty tailscale
+modules-left = i3 pulseaudio-control airpods backlight network-traffic system-uptime-pretty tailscale
 modules-right = cpu memory temperature filesystem xkeyboard wireless-network consumation battery date
 
 wm-restack = i3
@@ -122,7 +122,12 @@ interval = 2
 type = custom/script
 exec = ~/.config/polybar/tailscale.sh
 label =  %output%
-interval = 30
+interval = 5
+
+[module/airpods]
+type = custom/script
+exec = /usr/bin/bash -c "python3 ~/.config/polybar/airpod_battery.py"
+interval = 5
 
 [module/system-uptime-pretty]
 label =  %output%
