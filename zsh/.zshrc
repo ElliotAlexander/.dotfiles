@@ -93,9 +93,9 @@ alias kgn="kubectl get nodes"
 
 alias argologin="argocd login argocd.yellowdog.tech --grpc-web --username admin --password `KUBECONFIG=~/.kube/k9-dev kubectl -n argo-cd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`"
 
-alias weather="curl https://v2.wttr.in/"
-alias weather-southampton="curl https://v2.wttr.in/southampton"
-alias weather-bath="curl https://v2.wttr.in/bath"
+alias weather="curl https://wttr.in/bristol"
+alias weather-southampton="curl https://wttr.in/southampton"
+alias weather-bath="curl https://wttr.in/bath"
 
 source $ZSH/oh-my-zsh.sh
 

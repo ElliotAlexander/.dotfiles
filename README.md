@@ -19,3 +19,4 @@ This is a list of other tools I like and use daily, but which don't have configu
 * [xautolock](https://linux.die.net/man/1/xautolock)
 * [i3lockfancy](https://linux.die.net/man/1/xautolock)
 * [rofi](https://github.com/davatorium/rofi)
+* [Marp](https://marp.app/)
