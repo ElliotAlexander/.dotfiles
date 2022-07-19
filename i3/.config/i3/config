@@ -158,7 +158,7 @@ new_window 1pixel
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id compton --config ~/.config/compton.conf -b
-exec_always --no-startup-id xautolock -detectsleep -time 1 -corners +00- -locker i3lock-fancy
+exec_always --no-startup-id xautolock -detectsleep -time 5 -corners +00- -locker i3lock-fancy
 
 workspace 1 output DP-2
 workspace 2 output DP-4
