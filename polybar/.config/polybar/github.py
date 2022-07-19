@@ -4,6 +4,9 @@ import datetime
 import json
 import os
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
 
 GITHUB_LOGIN = 'elliotalexander'
 ACCESS_TOKEN = os.getenv('GITHUB_TOKEN')

@@ -124,7 +124,6 @@ export PATH=/home/elliot/bin:$PATH
 export GO111MODULE=on
 export PATH=$PATH:~/shell-tools/
 export PATH=$PATH:/usr/local/go/bin
-export PATH=/home/elliot/.pyenv/versions/3.7.2/bin:$PATH
 export PATH="$(go env GOPATH)/src/github.com/terraform-docs/terraform-docs/bin/$(uname | tr '[:upper:]' '[:lower:]')-amd64/terraform-docs:$PATH"
 
 # Terragrunt caching
@@ -133,13 +132,27 @@ export TERRAGRUNT_DOWNLOAD=/home/elliot/dev/infrastructure/.terragrunt_cache
 # This has to be after vault.sh
 export VAULT_ADDR="https://vault.yellowdog.tech:8200"
 
+export CLOUDSDK_PYTHON=/usr/bin/python3.8
+
 # For some reason *.sh isn't working here.
 source ~/shell-tools/start.sh
 
 source ~/zsh/kubernetes.sh
 source ~/zsh/prompt.zsh
+PROMPT=$(echo $PROMPT | sed 's/(base) //')
 
 # Start tmux
 if [ "$TMUX" = "" ]; then tmux; fi
 
 export PATH=$PATH:/home/elliot/.spicetify
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/tmp/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/tmp/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Start pyenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+

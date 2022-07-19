@@ -26,7 +26,7 @@ font-3 = Siji:pixelsize=11;1
 font-4 = FontAwesome:size=11;0
 
 
-modules-left = i3 pulseaudio-control airpods backlight network-traffic system-uptime-pretty tailscale
+modules-left = i3 pulseaudio-control airpods backlight network-traffic system-uptime-pretty tailscale github
 modules-right = cpu memory temperature filesystem xkeyboard wireless-network consumation battery date
 
 wm-restack = i3
@@ -68,12 +68,12 @@ padding-right = 4
 module-margin-left = 0
 module-margin-right = 6
 
-;font-0 = NotoSans-Regular:size=10;0
 font-0 = NotoSans-Regular:size=9;0
 font-1 = Material Icons:size=11;2
 font-2 = xos4 Terminus:size=14;0
 font-3 = Siji:pixelsize=11;1
 font-4 = FontAwesome:size=11;0
+font-5 = Material Design Icons:size=11;0
 
 modules-left = i3 spotify
 modules-right = cpu memory temperature filesystem xkeyboard alsa wireless-network consumation  battery date
@@ -122,11 +122,6 @@ interval = 2
 type = custom/script
 exec = ~/.config/polybar/tailscale.sh
 label =  %output%
-interval = 5
-
-[module/airpods]
-type = custom/script
-exec = /usr/bin/bash -c "python3 ~/.config/polybar/airpod_battery.py"
 interval = 5
 
 [module/system-uptime-pretty]
@@ -431,6 +426,7 @@ date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
 [module/temperature]
 type = internal/temperature
 thermal-zone = 5
+hwmon_path = /sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input
 warn-temperature = 65
 
 format = <ramp> <label>
@@ -530,11 +526,18 @@ label-separator = |
 label-separator-padding = 0
 label-separator-foreground = #ffb52a
 
+[module/github]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = /usr/bin/bash -c "python3 ~/.config/polybar/github.py"
+
 [module/spotify]
 type = custom/script
 interval = 1
-format-prefix = "  "
-format = <label>
+format-prefix = " "
+format =  %output%
 exec = python   ~/.config/polybar/spotify.py  -f '{play_pause} {song} - {artist} - {album}'
 
 format-underline = #1db954
