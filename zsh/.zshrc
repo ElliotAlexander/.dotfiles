@@ -129,13 +129,10 @@ export PATH="$(go env GOPATH)/src/github.com/terraform-docs/terraform-docs/bin/$
 # Terragrunt caching
 export TERRAGRUNT_DOWNLOAD=/home/elliot/dev/infrastructure/.terragrunt_cache
 
-# This has to be after vault.sh
-export VAULT_ADDR="https://vault.yellowdog.tech:8200"
-
 export CLOUDSDK_PYTHON=/usr/bin/python3.8
 
 # For some reason *.sh isn't working here.
-source ~/shell-tools/start.sh
+source ~/shell-tools/unix/start.sh
 
 source ~/zsh/kubernetes.sh
 source ~/zsh/prompt.zsh
