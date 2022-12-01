@@ -126,9 +126,6 @@ export TERRAGRUNT_DOWNLOAD=/home/elliot/dev/infrastructure/.terragrunt_cache
 
 export CLOUDSDK_PYTHON=/usr/bin/python3.8
 
-# For some reason *.sh isn't working here.
-source ~/shell-tools/unix/start.sh
-
 source ~/zsh/kubernetes.sh
 source ~/zsh/prompt.zsh
 PROMPT=$(echo $PROMPT | sed 's/(base) //')
