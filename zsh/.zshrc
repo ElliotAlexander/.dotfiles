@@ -5,7 +5,6 @@ export FZF_BASE=/path/to/fzf/install/dir
 HIST_STAMPS="yyyy-mm-dd"
 ENABLE_CORRECTION="false"
 
-
 # Magic Enter
 MAGIC_ENTER_GIT_COMMAND="exag && nocorrect git status -v && echo -e '\n'"
 MAGIC_ENTER_OTHER_COMMAND="nocorrect exag && echo -e '\n'"
@@ -33,7 +32,6 @@ plugins=(
 )
 
 
-export SSH_KEY_PATH="~/.ssh/id"
 export EDITOR=vim
 export TERM=xterm-256color
 
@@ -91,8 +89,6 @@ alias tgi="terragrunt init"
 alias k="kubectl"
 alias kgn="kubectl get nodes"
 
-alias argologin="argocd login argocd.yellowdog.tech --grpc-web --username admin --password `KUBECONFIG=~/.kube/k9-dev kubectl -n argo-cd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`"
-
 alias weather="curl https://wttr.in/bristol"
 alias weather-southampton="curl https://wttr.in/southampton"
 alias weather-bath="curl https://wttr.in/bath"
@@ -122,7 +118,6 @@ export PATH=/home/elliot/bin:$PATH
 
 # Go is annoying
 export GO111MODULE=on
-export PATH=$PATH:~/shell-tools/
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$(go env GOPATH)/src/github.com/terraform-docs/terraform-docs/bin/$(uname | tr '[:upper:]' '[:lower:]')-amd64/terraform-docs:$PATH"
 
