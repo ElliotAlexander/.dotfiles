@@ -45,7 +45,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-eunuch' " Unix commands in vim
 Plug 'airblade/vim-gitgutter'
 Plug 'dkprice/vim-easygrep'
-Plug 'HendrikPetertje/vimify'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Git
