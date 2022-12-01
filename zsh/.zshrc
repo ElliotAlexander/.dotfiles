@@ -57,6 +57,7 @@ alias gp="git push"
 alias gl="git pull --recurse-submodules"
 alias gb="git --no-pager branch"
 alias gch="git checkout"
+alias gc="git commit -m"
 
 alias tmux="TERM=xterm-256color tmux -u"
 alias tmuxm="TERM=xterm-256color tmux new-session \; split-window -h \; split-window -v \; attach"
