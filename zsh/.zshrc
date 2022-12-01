@@ -57,7 +57,6 @@ alias gp="git push"
 alias gl="git pull --recurse-submodules"
 alias gb="git --no-pager branch"
 alias gch="git checkout"
-alias gc="git commit -m"
 
 alias tmux="TERM=xterm-256color tmux -u"
 alias tmuxm="TERM=xterm-256color tmux new-session \; split-window -h \; split-window -v \; attach"
@@ -146,3 +145,5 @@ if [ -f '/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/tmp/google-cloud-
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+unalias gc
+alias gc="git commit -m"

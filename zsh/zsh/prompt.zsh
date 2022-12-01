@@ -54,18 +54,6 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-battery_status() {
-  if test ! "$(uname)" = "Darwin"
-  then
-    exit 0
-  fi
-
-  if [[ $(sysctl -n hw.model) == *"Book"* ]]
-  then
-    $ZSH/bin/battery-status
-  fi
-}
-
 export PROMPT='$(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
